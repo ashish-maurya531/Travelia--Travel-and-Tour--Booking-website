@@ -13,7 +13,7 @@ const UserModal = ({ user, isOpen, toggle }) => {
           const fetchBookedTours = async () => {
               try {
                   setLoading(true);
-                  const response = await axios.get(`http://localhost:4000/api/v1/booking?userId=${user._id}`, {
+                  const response = await axios.get(`https://travelia-travel-and-tour-booking-website.onrender.com/api/v1/booking?userId=${user._id}`, {
             withCredentials: true // Include cookies with the request
           });
           console.log(response)
@@ -45,7 +45,7 @@ const handleCancelTour = async (tour) => {
       console.log(tour.tourId)
       console.log(requestData)
   
-      await axios.delete(`http://localhost:4000/api/v1/booking/delete/${tour.tourId}`, {
+      await axios.delete(`https://travelia-travel-and-tour-booking-website.onrender.com/api/v1/booking/delete/${tour.tourId}`, {
  // Pass the requestData object in the body of the request
         withCredentials: true // Include cookies with the request
       });
