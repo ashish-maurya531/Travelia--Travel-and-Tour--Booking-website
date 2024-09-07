@@ -7,7 +7,7 @@ const router = express.Router()
 router.post('/', verifyUser, createBooking)
 router.get('/:id', verifyUser,getBooking)
 router.get('/', verifyAdmin, getAllBooking)
-router.delete('/delete/:id',deleteBooking)
+router.delete('/delete/:id',verifyUser,deleteBooking)
 
 
 export default router
