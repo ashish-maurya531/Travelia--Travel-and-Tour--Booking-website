@@ -131,3 +131,11 @@
       font-size: 1rem;
    }
 }  
+
+
+
+
+
+.ratingClass:active{
+   color: brown;
+}
