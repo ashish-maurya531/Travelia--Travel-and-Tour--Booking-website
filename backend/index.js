@@ -20,7 +20,7 @@ const corsOptions = {
 
 app.use(cors(
    {
-      origin: ["https://travelia-travel-and-tour-booking-website.onrender.com"],
+      origin: ["https://travelia-theta.vercel.app"],
          methods:["POST", "GET", "PUT", "DELETE"],
          credentials:true
       
