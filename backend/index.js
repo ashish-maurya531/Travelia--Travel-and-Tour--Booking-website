@@ -17,6 +17,16 @@ const corsOptions = {
    credentials: true
 }
 
+
+app.use(cors(
+   {
+      origin: ["https://travelia-travel-and-tour-booking-website.onrender.com"],
+         methods:["POST", "GET", "PUT", "DELETE"],
+         credentials:true
+      
+   }
+));
+
 // for testing
 app.get('/', (req, res) => {
    res.send('API is working')
