@@ -136,7 +136,7 @@
 
 
 
-.ratingClass:active{
+.ratingClass{
    color: white;
    background-color: orange;
 }
