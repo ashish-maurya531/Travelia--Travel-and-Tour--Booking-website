@@ -1,0 +1,136 @@
+/* Modal Overlay */
+.user-modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.6); /* Solid dark overlay */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+  }
+  
+  /* Modal Content */
+  .user-modal-content {
+    background-color: #ffffff; /* Solid white background */
+    padding: 20px;
+    border-radius: 8px;
+    width: 700px; /* Increased width */
+    max-width: 90%;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2); /* Light shadow */
+    position: relative;
+    z-index: 1001;
+    max-height: 80vh; /* Limit height of the modal */
+    overflow-y: auto; /* Enable vertical scrolling */
+  }
+  
+  /* Modal Header */
+  .user-modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 2px solid #f4a300; /* Orange border */
+    padding-bottom: 10px;
+  }
+  
+  .user-modal-header h2 {
+    font-size: 1.5rem; /* Larger header font size */
+    font-weight: bold;
+    margin: 0;
+    color: #333;
+  }
+  
+  /* Close Button */
+  .user-close-button {
+    background: transparent;
+    border: none;
+    font-size: 1.5rem; /* Larger close button */
+    cursor: pointer;
+    color: #f4a300; /* Orange color */
+    transition: color 0.3s ease;
+  }
+  
+  .user-close-button:hover {
+    color: #d98f00; /* Darker orange for hover */
+  }
+  
+  /* Modal Body */
+  .user-modal-body {
+    padding: 20px 0; /* Increased padding */
+  }
+  
+  .user-modal-body h3 {
+    font-size: 1.2rem; /* Larger subheader font size */
+    font-weight: 600;
+    margin-bottom: 15px;
+    color: #f4a300; /* Orange color */
+  }
+  
+  .tour-cards {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px; /* Space between cards */
+  }
+  
+  .tour-card {
+    background-color: #f8f9fa; /* Light gray background */
+    padding: 15px; /* Padding inside cards */
+    border-radius: 8px; /* Rounded corners */
+    border: 1px solid #ddd; /* Border color */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Light shadow */
+    flex: 1 1 calc(50% - 15px); /* Responsive card width */
+    box-sizing: border-box; /* Include padding and border in width */
+  }
+  
+  .tour-card div {
+    margin-bottom: 10px; /* Space between fields */
+  }
+  
+  /* Cancel Tour Button */
+  .cancel-tour-button {
+    background-color: #ff4d4d; /* Red color for cancel button */
+    border: none;
+    color: white;
+    padding: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: background-color 0.3s ease;
+    align-self: flex-start; /* Align button to the start */
+  }
+  
+  .cancel-tour-button:hover {
+    background-color: #cc0000; /* Darker red for hover */
+  }
+  
+  /* Responsive Design */
+  @media (max-width: 600px) {
+    .user-modal-content {
+      width: 80%; /* Full width on small screens */
+      max-width: 90%;
+    }
+  
+    .user-modal-header h2 {
+      font-size: 1.2rem; /* Adjust header font size */
+    }
+  
+    .user-close-button {
+      font-size: 1.2rem; /* Adjust close button font size */
+    }
+  
+    .user-modal-body h3 {
+      font-size: 1rem; /* Adjust subheader font size */
+    }
+  
+    .tour-card {
+      flex: 1 1 100%; /* Full width on small screens */
+      font-size: 0.9rem; /* Adjust font size */
+    }
+  
+    .cancel-tour-button {
+      font-size: 0.9rem; /* Adjust button font size */
+    }
+  }
+  
