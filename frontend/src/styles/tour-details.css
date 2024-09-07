@@ -140,3 +140,8 @@
    color: white;
    background-color: orange;
 }
+
+.ratingClass:hover{
+
+   background-color: lavender;
+}
