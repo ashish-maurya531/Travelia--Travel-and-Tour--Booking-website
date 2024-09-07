@@ -137,5 +137,6 @@
 
 
 .ratingClass:active{
-   color: brown;
+   color: white;
+   background-color: orange;
 }
