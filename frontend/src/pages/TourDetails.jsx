@@ -81,7 +81,7 @@ const TourDetails = () => {
                            <div className="d-flex align-items-center gap-5">
                               <span className="tour__rating d-flex align-items-center gap-1">
                                  <i class='ri-star-fill' style={{ 'color': 'var(--secondary-color)' }}></i> {avgRating === 0 ? null : avgRating}
-                                 {avgRating === 0 ? ('Not rated') : (<span className='ratingClass'>({reviews?.length})</span>)}
+                                 {avgRating === 0 ? ('Not rated') : (<span >({reviews?.length})</span>)}
                               </span>
 
                               <span><i class='ri-map-pin-fill'></i> {address}</span>
@@ -103,11 +103,11 @@ const TourDetails = () => {
 
                            <Form onSubmit={submitHandler}>
                               <div className="d-flex align-items-center gap-3 mb-4 rating__group">
-                                 <span onClick={() => setTourRating(1)}>1 <i class='ri-star-s-fill'></i></span>
-                                 <span onClick={() => setTourRating(2)}>2 <i class='ri-star-s-fill'></i></span>
-                                 <span onClick={() => setTourRating(3)}>3 <i class='ri-star-s-fill'></i></span>
-                                 <span onClick={() => setTourRating(4)}>4 <i class='ri-star-s-fill'></i></span>
-                                 <span onClick={() => setTourRating(5)}>5 <i class='ri-star-s-fill'></i></span>
+                                 <span className='ratingClass'onClick={() => setTourRating(1)}>1 <i class='ri-star-s-fill' className='ratingClass'></i></span>
+                                 <span className='ratingClass'onClick={() => setTourRating(2)}>2 <i class='ri-star-s-fill'className='ratingClass'></i></span>
+                                 <span className='ratingClass'onClick={() => setTourRating(3)}>3 <i class='ri-star-s-fill'className='ratingClass'></i></span>
+                                 <span className='ratingClass'onClick={() => setTourRating(4)}>4 <i class='ri-star-s-fill'className='ratingClass'></i></span>
+                                 <span className='ratingClass'onClick={() => setTourRating(5)}>5 <i class='ri-star-s-fill'className='ratingClass'></i></span>
                               </div>
 
                               <div className="review__input">
