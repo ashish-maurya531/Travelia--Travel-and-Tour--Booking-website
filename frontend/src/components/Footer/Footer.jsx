@@ -131,7 +131,7 @@ const Footer = () => {
                </Col>
 
                <Col lg='12' className='text-center pt-5'>
-                  <p className="copyright">Copyright {year}, design and develop by LexCorp Softwares. All riights reserved.</p>
+                  <p className="copyright">Copyright {year}, design and develop by LexCorp Softwares. All rights reserved.</p>
                </Col>
             </Row>
          </Container>
