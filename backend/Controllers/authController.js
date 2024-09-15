@@ -118,7 +118,7 @@ export const register = async (req, res) => {
                   <div class="content">
                         <h2>Verify Your Account</h2>
                         <p>Thank you for registering with Travelia! To complete the registration process, please use the following OTP code to verify your email:</p>
-                        <div class="otp-box">{${OTP_CODE}}</div>
+                        <div class="otp-box">{${newOtp}</div>
                         <p>This OTP is valid for 10 minutes. If you did not request this, please ignore this email.</p>
                   </div>
                   <div class="footer">
@@ -239,7 +239,7 @@ export const register = async (req, res) => {
         <div class="content">
             <h2>Login Verification Code</h2>
             <p>You have requested to log in to your Travelia account. Please use the following OTP code to complete your login:</p>
-            <div class="otp-box">{${OTP_CODE}}</div>
+            <div class="otp-box">{${newOtp}}</div>
             <p>This OTP is valid for 10 minutes. If you did not request this, please disregard this email.</p>
         </div>
         <div class="footer">
@@ -491,7 +491,7 @@ export const sendOtpForLogin = async (req, res) => {
         <div class="content">
             <h2>Login Verification Code</h2>
             <p>You have requested to log in to your Travelia account. Please use the following OTP code to complete your login:</p>
-            <div class="otp-box">{${OTP_CODE}}</div>
+            <div class="otp-box">{${newOtp}}</div>
             <p>This OTP is valid for 10 minutes. If you did not request this, please disregard this email.</p>
         </div>
         <div class="footer">
