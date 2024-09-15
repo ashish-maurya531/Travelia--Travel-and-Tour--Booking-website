@@ -8,7 +8,7 @@ import customizationImg from '../assets/images/customization.png'
 const servicesData = [
    {
       imgUrl: weatherImg,
-      title: `Calculate Weather`,
+      title: `Calculate Tour Prices`,
       
    },
    {
