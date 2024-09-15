@@ -102,7 +102,7 @@
   }
   
   .cancel-tour-button:hover {
-    background-color: #cc0000; /* Darker red for hover */
+    background-color: orange; 
   }
   
   /* Responsive Design */

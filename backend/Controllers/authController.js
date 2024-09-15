@@ -40,11 +40,95 @@ export const register = async (req, res) => {
    await sendEmail({
       to: email,
       subject: "Verification Code",
-      text: `Your Account is not verified. This is your verification code:  </br>
-      <h1> ${newOtp} </h1>
-      </br> 
-      Please use this code to verify your account. THANK YOU!
-      `
+      text: `<!DOCTYPE html>
+            <html lang="en">
+            <head>
+               <meta charset="UTF-8">
+               <meta http-equiv="X-UA-Compatible" content="IE=edge">
+               <meta name="viewport" content="width=device-width, initial-scale=1.0">
+               <title>OTP Verification</title>
+               <style>
+                  body {
+                        font-family: 'Arial', sans-serif;
+                        background-color: #f4f4f4;
+                        margin: 0;
+                        padding: 0;
+                  }
+                  .container {
+                        max-width: 600px;
+                        margin: 0 auto;
+                        background-color: #ffffff;
+                        padding: 20px;
+                        border-radius: 8px;
+                        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+                  }
+                  .header {
+                        text-align: center;
+                        background-color: #0066cc;
+                        padding: 10px 0;
+                        border-top-left-radius: 8px;
+                        border-top-right-radius: 8px;
+                  }
+                  .header h1 {
+                        color: #ffffff;
+                        margin: 0;
+                        font-size: 24px;
+                  }
+                  .content {
+                        padding: 20px;
+                        text-align: center;
+                  }
+                  .content h2 {
+                        font-size: 22px;
+                        color: #333;
+                        margin-bottom: 10px;
+                  }
+                  .content p {
+                        font-size: 16px;
+                        color: #666;
+                  }
+                  .otp-box {
+                        font-size: 24px;
+                        font-weight: bold;
+                        color: #0066cc;
+                        background-color: #f9f9f9;
+                        border-radius: 5px;
+                        padding: 15px;
+                        margin: 20px 0;
+                        display: inline-block;
+                  }
+                  .footer {
+                        text-align: center;
+                        margin-top: 30px;
+                        font-size: 12px;
+                        color: #999;
+                  }
+                  .footer a {
+                        color: #0066cc;
+                        text-decoration: none;
+                  }
+               </style>
+            </head>
+            <body>
+
+               <div class="container">
+                  <div class="header">
+                        <h1>Travelia - OTP Verification</h1>
+                  </div>
+                  <div class="content">
+                        <h2>Verify Your Account</h2>
+                        <p>Thank you for registering with Travelia! To complete the registration process, please use the following OTP code to verify your email:</p>
+                        <div class="otp-box">{${OTP_CODE}}</div>
+                        <p>This OTP is valid for 10 minutes. If you did not request this, please ignore this email.</p>
+                  </div>
+                  <div class="footer">
+                        <p>Need help? Contact our support team at <a href="mailto:support@travelia.com">support@travelia.com</a></p>
+                  </div>
+               </div>
+
+            </body>
+            </html>
+            `
    })
 
          res.status(200).json({
@@ -77,7 +161,95 @@ export const register = async (req, res) => {
    await sendEmail({
       to: newUser.email,
       subject: "Verification Code",
-      text: `This is your verification code: ${newOtp}`
+      text: `<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login OTP</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: #ffffff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+        .header {
+            text-align: center;
+            background-color: #0066cc;
+            padding: 10px 0;
+            border-top-left-radius: 8px;
+            border-top-right-radius: 8px;
+        }
+        .header h1 {
+            color: #ffffff;
+            margin: 0;
+            font-size: 24px;
+        }
+        .content {
+            padding: 20px;
+            text-align: center;
+        }
+        .content h2 {
+            font-size: 20px;
+            color: #333;
+            margin-bottom: 10px;
+        }
+        .content p {
+            font-size: 16px;
+            color: #666;
+        }
+        .otp-box {
+            font-size: 24px;
+            font-weight: bold;
+            color: #0066cc;
+            background-color: #f9f9f9;
+            border-radius: 5px;
+            padding: 15px;
+            margin: 20px 0;
+            display: inline-block;
+        }
+        .footer {
+            text-align: center;
+            margin-top: 30px;
+            font-size: 12px;
+            color: #999;
+        }
+        .footer a {
+            color: #0066cc;
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <div class="header">
+            <h1>Travelia - Login OTP</h1>
+        </div>
+        <div class="content">
+            <h2>Login Verification Code</h2>
+            <p>You have requested to log in to your Travelia account. Please use the following OTP code to complete your login:</p>
+            <div class="otp-box">{${OTP_CODE}}</div>
+            <p>This OTP is valid for 10 minutes. If you did not request this, please disregard this email.</p>
+        </div>
+        <div class="footer">
+            <p>Need help? Contact our support team at <a href="mailto:support@travelia.com">support@travelia.com</a></p>
+        </div>
+    </div>
+
+</body>
+</html>
+`
    })
 
 
@@ -118,10 +290,85 @@ console.log("data", data)
       await sendEmail({
          to: email,
          subject: "Accounted Created",
-         text: `Welcome ${userData?.username}, 
-         </br>
-         Your account has been created successfully.
-         `
+         text: `<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Account Created</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: #ffffff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+        .header {
+            text-align: center;
+            background-color: #28a745;
+            padding: 10px 0;
+            border-top-left-radius: 8px;
+            border-top-right-radius: 8px;
+        }
+        .header h1 {
+            color: #ffffff;
+            margin: 0;
+            font-size: 24px;
+        }
+        .content {
+            padding: 20px;
+            text-align: center;
+        }
+        .content h2 {
+            font-size: 20px;
+            color: #333;
+            margin-bottom: 10px;
+        }
+        .content p {
+            font-size: 16px;
+            color: #666;
+        }
+        .footer {
+            text-align: center;
+            margin-top: 30px;
+            font-size: 12px;
+            color: #999;
+        }
+        .footer a {
+            color: #28a745;
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <div class="header">
+            <h1>Welcome to Travelia!</h1>
+        </div>
+        <div class="content">
+            <h2>Account Created Successfully</h2>
+            <p>Dear ${userData?.username},</p>
+            <p>Your account at Travelia has been created successfully. You can now log in and start exploring our services.</p>
+            <p>Thank you for joining us!</p>
+        </div>
+        <div class="footer">
+            <p>If you have any questions, feel free to <a href="mailto:support@travelia.com">contact us</a>.</p>
+        </div>
+    </div>
+
+</body>
+</html>
+`
       })
 
       res.status(200).json({ success: true, message: "OTP verified successfully!!" })
@@ -166,7 +413,95 @@ export const sendOtpForLogin = async (req, res) => {
    await sendEmail({
       to: email,
       subject: "Verification Code",
-      text: `This is your verification code: ${newOtp}`
+      text: `<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login OTP</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: #ffffff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+        .header {
+            text-align: center;
+            background-color: #0066cc;
+            padding: 10px 0;
+            border-top-left-radius: 8px;
+            border-top-right-radius: 8px;
+        }
+        .header h1 {
+            color: #ffffff;
+            margin: 0;
+            font-size: 24px;
+        }
+        .content {
+            padding: 20px;
+            text-align: center;
+        }
+        .content h2 {
+            font-size: 20px;
+            color: #333;
+            margin-bottom: 10px;
+        }
+        .content p {
+            font-size: 16px;
+            color: #666;
+        }
+        .otp-box {
+            font-size: 24px;
+            font-weight: bold;
+            color: #0066cc;
+            background-color: #f9f9f9;
+            border-radius: 5px;
+            padding: 15px;
+            margin: 20px 0;
+            display: inline-block;
+        }
+        .footer {
+            text-align: center;
+            margin-top: 30px;
+            font-size: 12px;
+            color: #999;
+        }
+        .footer a {
+            color: #0066cc;
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <div class="header">
+            <h1>Travelia - Login OTP</h1>
+        </div>
+        <div class="content">
+            <h2>Login Verification Code</h2>
+            <p>You have requested to log in to your Travelia account. Please use the following OTP code to complete your login:</p>
+            <div class="otp-box">{${OTP_CODE}}</div>
+            <p>This OTP is valid for 10 minutes. If you did not request this, please disregard this email.</p>
+        </div>
+        <div class="footer">
+            <p>Need help? Contact our support team at <a href="mailto:support@travelia.com">support@travelia.com</a></p>
+        </div>
+    </div>
+
+</body>
+</html>
+`
    })
    res.status(200).json({ success: true, message: "Otp send to you email." })
       }
