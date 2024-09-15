@@ -1,6 +1,9 @@
+
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import './userModal.css'; // Ensure this import is correct
+import { BASE_URL } from '../utils/config'
+
 
 const UserModal = ({ user, isOpen, toggle }) => {
   const [bookedTours, setBookedTours] = useState([]);
@@ -8,61 +11,45 @@ const UserModal = ({ user, isOpen, toggle }) => {
   const [error, setError] = useState(null);
   
   useEffect(() => {
-      if (user && isOpen) {
-        
-          const fetchBookedTours = async () => {
-              try {
-                  setLoading(true);
-                  const response = await axios.get(`https://travelia-travel-and-tour-booking-website.onrender.com/api/v1/booking?userId=${user._id}`, {
+    if (user && isOpen) {
+      const fetchBookedTours = async () => {
+        try {
+          setLoading(true);
+          const response = await axios.get(`${BASE_URL}/booking?userId=${user._id}`, {
             withCredentials: true // Include cookies with the request
           });
-          console.log(response)
           
           const filteredBookings = response.data.data.filter(
-              (booking) => booking.userId === user._id
-            );
-            setBookedTours(filteredBookings);
+            (booking) => booking.userId === user._id
+          );
+          setBookedTours(filteredBookings);
         } catch (error) {
-            setError('Error fetching booked tours.');
+          setError('Error fetching booked tours.');
         } finally {
-            setLoading(false);
+          setLoading(false);
         }
-    };
-    
-    fetchBookedTours();
-}
-}, [user, isOpen]);
-
-const handleCancelTour = async (tour) => {
-    try {
-      const requestData = {
-        userId: tour._id,      // The current user's ID
-        fullName: tour.fullName, // Assuming fullName is equivalent to the username
-        guestSize: tour.guestSize,
-        tourName: tour.tourName,
-        tourId: tour.tourId,// Number of guests in the tour
       };
-      console.log(tour.tourId)
-      console.log(requestData)
-  
-      await axios.delete(`https://travelia-travel-and-tour-booking-website.onrender.com/api/v1/booking/delete/${tour.tourId}`, {
- // Pass the requestData object in the body of the request
+    
+      fetchBookedTours();
+    }
+  }, [user, isOpen]);
+
+  const handleCancelTour = async (tour) => {
+    try {
+      await axios.delete(`${BASE_URL}/booking/delete/${tour.tourId}`, {
         withCredentials: true // Include cookies with the request
       });
-      console.log(tour.tourId)
-
   
-      // Filter out the tour from the local state after successful deletion
-      setBookedTours(bookedTours.filter(t => t._id !== user._id));
+      // Remove the canceled tour from the state
+      setBookedTours(bookedTours.filter(t => t.tourId !== tour.tourId));
     } catch (error) {
       console.error('Error cancelling tour:', error);
     }
   };
 
-if (!isOpen) return null;
+  if (!isOpen) return null;
 
-
-return (
+  return (
     <div className="user-modal-overlay" onClick={toggle}>
       <div className="user-modal-content" onClick={(e) => e.stopPropagation()}>
         <div className="user-modal-header">
@@ -76,12 +63,14 @@ return (
           {bookedTours.length > 0 ? (
             <div className="tour-cards">
               {bookedTours.map((tour) => (
-                <div key={tour._id.$oid} className="tour-card">
+                <div key={tour._id} className="tour-card">
                   <div><strong>Tour Name:</strong> {tour.tourName}</div>
                   <div><strong>Tour Id:</strong> {tour.tourId}</div>
                   <div><strong>Date:</strong> {new Date(tour.bookAt).toLocaleDateString()}</div>
                   <div><strong>Number of Guests:</strong> {tour.guestSize}</div>
                   <div><strong>Phone:</strong> {tour.phone}</div>
+                  <div><strong>Hotel Preference:</strong> {tour.hotelPreference}</div> {/* Added hotel preference */}
+                  <div><strong>Travel Preference:</strong> {tour.travelPreference}</div> {/* Added travel preference */}
                   <button className="cancel-tour-button" onClick={() => handleCancelTour(tour)}>Cancel Tour</button>
                 </div>
               ))}

@@ -19,14 +19,17 @@ const Booking = ({ tour, avgRating }) => {
       fullName: '',
       phone: '',
       guestSize: 1,
-      bookAt: ''
-   })
+      bookAt: '',
+      hotelPreference: '', // Add hotel preference field
+      travelPreference: ''
+     
+    });
 
    const handleChange = e => {
       setBooking(prev => ({ ...prev, [e.target.id]: e.target.value }))
    }
 
-   const serviceFee = 10
+   const serviceFee = 100
    const totalAmount = Number(price) * Number(booking.guestSize) + Number(serviceFee)
 
    const handleClick = async e => {
@@ -80,13 +83,37 @@ const Booking = ({ tour, avgRating }) => {
                   <input type="tel" placeholder='Phone' id='phone' required
                      onChange={handleChange} />
                </FormGroup>
+               <FormGroup>
+                  <input type="text" placeholder='Enter the pick up location' id='pickup' required
+                     onChange={handleChange} />
+               </FormGroup>
                <FormGroup className='d-flex align-items-center gap-3'>
                   <input type="date" placeholder='' id='bookAt' required
                      onChange={handleChange} />
                   <input type="number" placeholder='Guest' id='guestSize' required
                      onChange={handleChange} />
                </FormGroup>
-            </Form>
+               <FormGroup>
+                  <select id="hotelPreference" onChange={handleChange} required>
+                     <option value="any" disabled selected>
+                        Select Hotel Preference
+                     </option>
+                     <option value="luxury">Luxury</option>
+                     <option value="quality">Quality</option>
+                     <option value="basic">Basic</option>
+                  </select>
+               </FormGroup>
+               <FormGroup>
+                  <select id="travelPreference" onChange={handleChange} required>
+                     <option value="any" disabled selected>
+                        Select Travel Preference
+                     </option>
+                     <option value="flight">Flight</option>
+                     <option value="train">Train</option>
+                     <option value="bus">Bus</option>
+                  </select>
+               </FormGroup>
+            </Form> 
          </div>
          {/* =============== BOOKING FORM END ================ */}
 

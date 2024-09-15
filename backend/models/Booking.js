@@ -43,10 +43,10 @@ import Counter from "../models/counterModel.js"; // Import the counter model
 const bookingSchema = new mongoose.Schema(
   {
     userId: {
-      type: String
+      type: String,
     },
     userEmail: {
-      type: String
+      type: String,
     },
     tourName: {
       type: String,
@@ -58,19 +58,29 @@ const bookingSchema = new mongoose.Schema(
     },
     guestSize: {
       type: Number,
-      required: true
+      required: true,
     },
     phone: {
       type: Number,
-      required: true
+      required: true,
     },
     bookAt: {
       type: Date,
-      required: true
+      required: true,
     },
     tourId: {
-      type: Number, // Ensure tourId is a number
-      unique: true // Each tourId should be unique
+      type: Number,
+      unique: true, // Ensure tourId is unique
+    },
+    hotelPreference: {
+      type: String,
+      enum: ['luxury', 'quality', 'basic'], // Allowed values for hotel preference
+      required: true, // Set as required if it's a must-have
+    },
+    travelPreference: {
+      type: String,
+      enum: ['flight', 'train', 'car'], // Allowed values for travel preference
+      required: true, // Set as required if it's mandatory
     },
   },
   { timestamps: true }

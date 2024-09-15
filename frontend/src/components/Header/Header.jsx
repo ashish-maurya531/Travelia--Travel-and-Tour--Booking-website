@@ -80,7 +80,7 @@ const Header = () => {
               <div className="nav__btns d-flex align-items-center gap-2">
                 {user ? (
                   <>
-                    <h5 className='mb-0' onClick={toggleModal} style={{ cursor: 'pointer' }}>{user.username}</h5>
+                    <h5 className='mb-0' onClick={toggleModal} style={{ cursor: 'pointer' }}>👤 {user.username}</h5>
                     <Button className='btn btn-dark' onClick={logout}>Logout</Button>
                   </>
                 ) : (

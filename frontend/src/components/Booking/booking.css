@@ -83,3 +83,36 @@
    transform: scale(1.1);
    transition: 0.5s;
 }
+
+
+
+
+
+
+.booking__form select {
+   width: 100%;
+   padding: 0.4rem;
+   border-radius: 0.5rem;
+   color: var(--heading-color);
+   font-size: 0.7rem;
+   border-bottom: 1px solid rgb(229, 231, 235);
+   border: none;
+   background-color: white;
+}
+
+
+
+.booking__form option {
+   color: var(--heading-color);
+   font-size: 0.7rem;
+   padding: 0.4rem;
+}
+
+
+.booking__form option :hover {
+   border-bottom: 0px solid var(--secondary-color); 
+   background-color: orange !important; 
+
+   cursor: pointer;
+
+}
