@@ -6,12 +6,17 @@ import loginImg from '../assets/images/login.png'
 import userIcon from '../assets/images/user.png'
 import { AuthContext } from '../context/AuthContext'
 import { BASE_URL } from '../utils/config'
+import axios from 'axios'
 
 const Login = () => {
    const [credentials, setCredentials] = useState({
       email: undefined,
       password: undefined
    })
+   const [isSendOtp, setIsSendOtp] = useState(false)
+   const [isLoading, setIsLoading] = useState(false)
+   const [isVerify, setIsVerify] = useState(false)
+   
 
    const {dispatch} = useContext(AuthContext)
    const navigate = useNavigate()
@@ -20,8 +25,7 @@ const Login = () => {
       setCredentials(prev => ({ ...prev, [e.target.id]: e.target.value }))
    }
 
-   const handleClick = async e => {
-      e.preventDefault()
+   const handleClick = async () => {
 
       dispatch({type:'LOGIN_START'})
 
@@ -46,6 +50,43 @@ const Login = () => {
       }
    }
 
+   const sendOtpRequest = async () => {
+      setIsLoading(true)
+      try {
+      const response = await axios.post(`${BASE_URL}/auth/sendOtp`, {
+         email: credentials.email
+      }
+      )
+      console.log("otp,response", response)
+      alert("OTP sent successfully")
+      setIsLoading(false)
+      setIsSendOtp(true)
+      } catch(err) {
+         setIsLoading(false)
+         alert(err.message)
+      }
+   }
+
+   const handleOtp = async e => {
+      e.preventDefault()
+      setIsLoading(true)
+      try {
+      const response = await axios.post(`${BASE_URL}/auth/verify`, {
+         email: credentials.email,
+         otp: credentials.otp
+      }
+      )
+      console.log("otp,response", response)
+      alert("otp verified successully")
+      setIsVerify(true)
+      setIsLoading(false)
+      await handleClick()
+
+      } catch(err) {
+         setIsLoading(false)
+         alert(err.message)
+      }
+   }
 
    return (
       <section>
@@ -64,13 +105,50 @@ const Login = () => {
                         <h2>Login</h2>
 
                         <Form onSubmit={handleClick}>
-                           <FormGroup>
+                           {
+                              !isSendOtp && (
+                                 <>
+                                  <FormGroup>
                               <input type="email" placeholder='Email' id='email' onChange={handleChange} required />
                            </FormGroup>
                            <FormGroup>
                               <input type="password" placeholder='Password' id='password' onChange={handleChange} required />
                            </FormGroup>
-                           <Button className='btn secondary__btn auth__btn' type='submit'>Login</Button>
+                                 </>
+                              )
+                           }
+                          
+                           
+                           {
+                              isSendOtp? (
+                                 <div>
+                                    <input type="text" placeholder='OTP' id='otp' onChange={handleChange} required />
+                                    <Button 
+                                    disabled={isLoading}
+                                    style={{
+                                       marginTop: '10px',
+                                       marginBottom: '10px'
+                                    }} className='btn secondary__btn auth__btn' 
+                                    onClick={handleOtp}
+                                    >
+                                   {
+                                     isLoading? 'Verifying otp...' : 'Verify OTP' 
+  
+                                   }
+                                    </Button>
+                                 </div>
+                              ) : (
+                                 <Button disabled={isLoading} className='btn secondary__btn auth__btn' 
+                                 onClick={sendOtpRequest}
+                                 >
+                                    {
+                                       isLoading? 'Sending OTP...' : 'Send OTP' 
+ 
+                                    }
+                                 </Button>
+                              )}
+                           
+                          
                         </Form>
                         <p>Don't have an account? <Link to='/register'>Create</Link></p>
                      </div>
